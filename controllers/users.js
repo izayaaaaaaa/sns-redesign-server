@@ -1,9 +1,9 @@
 import User from "../models/User.js";
 
-/* READ */
+// READ
 export const getUser = async (req, res) => {
-    try{
-        const { id } = req.params;
+    try {
+        const { id} = req.params;
         const user = await User.findById(id);
         res.status(200).json(user); // send back everything relevant to the user after finding it
     } catch (err) {
@@ -13,7 +13,7 @@ export const getUser = async (req, res) => {
 
 export const getUserFriends = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id} = req.params;
         const user = await User.findById(id);
 
         const friends = await Promise.all(
@@ -30,14 +30,14 @@ export const getUserFriends = async (req, res) => {
     }
 };
 
-/* UPDATE */
+// UPDATE
 export const addRemoveFriend = async (req, res) => {
     try {
         const { id, friendId } = req.params;
         const user = await User.findById(id);
         const friend = await User.findById(friendId);
 
-        // map through the friends array and find each friend by their id
+        // logic for ensuring that add/remove happens on both parties' end
         if (user.friends.includes(friendId)) { // if the user's friends array includes the friendId
             user.friends = user.friends.filter((id) => id !== friendId); // remove friendId from user's friends array
             friend.friends = friend.friends.filter((id) => id !== id); // remove user's id from friend's friends array

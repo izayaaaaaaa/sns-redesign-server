@@ -18,16 +18,16 @@ const postSchema = mongoose.Schema(
         description: String,
         picturePath: String,
         userPicturePath: String,
-        likes: {
-            type: Map,
+        likes: { // map is more efficient than an array
+            type: Map, // how mongodb saves objects
             of: Boolean,
         },
         comments: {
-            types: Array,
+            type: Array,
             default: []
         }
     },
-    { timestamps: true}
+    { timestamps: true }
 );
 
 const Post = mongoose.model("Post", postSchema);
