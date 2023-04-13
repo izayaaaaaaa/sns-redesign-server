@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 // ============================== AUTHENTICATION ==============================
 
@@ -15,8 +15,8 @@ export const register = async (req, res) => {
             picturePath,
             friends,
             location, 
-            occupation
-        } = req.body; // grab said arguments from an object created in the frontend
+      occupation,
+    } = req.body;
 
         const salt = await bcrypt.genSalt(); // encryption used for password
         const passwordHash = await bcrypt.hash(password, salt); // encrypt password
@@ -30,9 +30,9 @@ export const register = async (req, res) => {
             friends,
             location,
             occupation,
-            viewedProfile: Math.floor(Math.random() * 100000),
-            impressions: Math.floor(Math.random() * 100000)
-        })
+            viewedProfile: Math.floor(Math.random() * 10000),
+            impressions: Math.floor(Math.random() * 10000),
+    });
         const savedUser = await newUser.save();
         res.status(201).json(savedUser); // 201 "something has been created"
 
@@ -59,4 +59,4 @@ export const login = async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: err.message }); // 500 "internal server error"
     }
-}
+};

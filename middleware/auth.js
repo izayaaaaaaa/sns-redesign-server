@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export const verifyToken = async (req, res, next) => {
     try {
@@ -20,4 +20,4 @@ export const verifyToken = async (req, res, next) => {
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
-}
+};
