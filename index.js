@@ -8,7 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import authRoutes from "./routes/auth.js";
+import authRoutes from "./routes/auth.js"; // path to features
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
@@ -45,7 +45,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ROUTES WITH FILES
-app.post("/auth/register", upload.single("picture"), register);
+// cannot be treated the same as other routes separated into their own files because of the file upload/storage function created above
+app.post("/auth/register", upload.single("picture"), register); 
+// (route, middleware (upload pic to assets dir), function that saves our user into the db )
+
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 // ROUTES

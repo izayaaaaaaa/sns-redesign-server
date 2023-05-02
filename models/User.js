@@ -1,6 +1,7 @@
+// coding equivalent of the user object (ERD)
+
 import mongoose from "mongoose";
 
-// code equivalent of the user object (ERD)
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -41,8 +42,6 @@ const UserSchema = new mongoose.Schema({
 
     location: String,
     occupation: String,
-    viewedProfile: Number,
-    impressions: Number,
 }, 
 { timestamps: true }
 );
