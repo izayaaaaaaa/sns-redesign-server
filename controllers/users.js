@@ -19,7 +19,7 @@ export const getUserFriends = async (req, res) => {
         const friends = await Promise.all(
             user.friends.map((id) => User.findById(id)) // map through the friends array and find each friend by their id
         );
-        const formattedFriends = friends.map(
+        const formattedFriends = friends.map( // formatted properly for the frontend
             ({ _id, firstName, lastName, occupation, location, picturePath }) => {
                 return { _id, firstName, lastName, occupation, location, picturePath };
             }
@@ -30,7 +30,7 @@ export const getUserFriends = async (req, res) => {
     }
 };
 
-// UPDATE
+// UPDATE (ADD OR DELETE FRIEND)
 export const addRemoveFriend = async (req, res) => {
     try {
         const { id, friendId } = req.params;
@@ -48,7 +48,7 @@ export const addRemoveFriend = async (req, res) => {
         await user.save();
         await friend.save();
 
-        // format the friends array
+        // format the friends array; reupdate the friends array
         const friends = await Promise.all(
             user.friends.map((id) => User.findById(id)) // map through the friends array and find each friend by their id
         );

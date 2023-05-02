@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
-// protect routes that require authentication by verifying the JWT in the request header
+// ============================== AUTHORIZATION ==============================
+// protect routes that require authorization by verifying the JWT in the request header
 export const verifyToken = async (req, res, next) => {
     try {
         let token = req.header("Authorization"); // grab the token from the frontend

@@ -49,7 +49,7 @@ export const getUserPosts = async (req, res) => {
     } 
 };
 
-// UPDATE
+// UPDATE (LIKE OR UNLIKE A POST)
 export const likePost = async (req, res) => {
     try {
         const { id } = req.params; // from the query string
